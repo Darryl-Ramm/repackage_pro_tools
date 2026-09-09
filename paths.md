@@ -54,6 +54,6 @@ Claude to build the script, and Claude helped update it.
 * `/Applications/Pro Tools.app/Contents/Plugins/Core Plug-Ins/`
 * *(Would step thought each .aaxplugin file there)*
 
-1 **Systems Plugins**
+1. **Systems Plugins**
 * `/Applications/Pro Tools.app/Contents/Plugins/System Plug-Ins/`
 * *(Would step thought each .aaxplugin file there)*
