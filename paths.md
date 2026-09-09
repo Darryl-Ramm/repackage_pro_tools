@@ -48,7 +48,7 @@ Claude to build the script, and Claude helped update it.
 * `/Applications/Pro Tools.app/Contents/SharedSupport/Documentation/`
 * *(Removing these prevents Pro Tools every recopying them to /Users/Shared on each startup)*
 
-## Things that would be implemented easily but don't make a lot of sense, and we won't do for now
+### Things that would be implemented easily but don't make a lot of sense, and we won't do for now
 
 13. **Core Plugins**
 * `/Applications/Pro Tools.app/Contents/Plugins/Core Plug-Ins/`
