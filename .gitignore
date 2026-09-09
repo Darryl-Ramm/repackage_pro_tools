@@ -1,55 +1,22 @@
-# Prerequisites
-*.d
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Thumbnails and Trash
+._*
+.Spotlight-V100
+.Trashes
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Python / Local Virtual Environments (if testing locally)
+__pycache__/
+*.pyc
+.venv/
+env/
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-# debug information files
-*.dwo
+# Editor / IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
