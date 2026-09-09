@@ -9,23 +9,23 @@ Claude to build the script, and Claude helped update it.
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/AvidLink_Installer.pkg`
 * `${EXPAND_DIR}/Pro Tools AppMan.pkg`
 
-2. **Pro Tools Sketch**
+1. **Pro Tools Sketch**
 * `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/PlugIns/System Plug-Ins/Pro Tools Sketch.aaxplugin`
 * *(Plus clearing the staging artifacts like `/tmp/Go_Sketch/`)*
 
-3. **SoundFlow Integration**
+1. **SoundFlow Integration**
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/SoundFlowProTools.pkg`
 
-4. **Splice Integration**
+1. **Splice Integration**
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/SpliceProTools.pkg`
 
-5. **Melodyne / Celemony**
+1. **Melodyne / Celemony**
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/Melodyne.pkg`
 
-6. **Pro Tools Demo Sessions**
-* `/tmp/Demo_Session` (packaged temp asset)
+1. **Pro Tools Demo Sessions**
+* `/tmp/Demo_Session`
 
-7. **Avid Video Engine**
+1. **Avid Video Engine**
 * `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/Frameworks/Video Engine/`
 * *(Leaving `/Users/Shared/AvidVideoEngine` alone per instruction)*
 
