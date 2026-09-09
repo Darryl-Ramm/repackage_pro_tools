@@ -1,5 +1,5 @@
 # Paths
-## Items in to offer to remove, and their paths in the unpacked installer.
+### Items to offer to remove, and their paths in the unpacked installer.
 
 This document was built by inspecting the unpacked installer and
 Pro Tools.app bundle on installed systyems, and was an input to
@@ -22,16 +22,14 @@ Claude to build the script, and Claude helped update it.
 5. **Melodyne / Celemony**
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/Melodyne.pkg`
 
-
 6. **Pro Tools Demo Sessions**
 * `/tmp/Demo_Session` (packaged temp asset)
-
 
 7. **Avid Video Engine**
 * `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/Frameworks/Video Engine/`
 * *(Leaving `/Users/Shared/AvidVideoEngine` alone per instruction)*
 
-## New Additons:
+### New items to add:
 
 1. **PACE/iLok License Manager Installer**
 * `/tmp/PACE/LicenseSupport.pkg`
@@ -50,7 +48,7 @@ Claude to build the script, and Claude helped update it.
 * `/Applications/Pro Tools.app/Contents/SharedSupport/Documentation/`
 * *(Removing these prevents Pro Tools every recopying them to /Users/Shared on each startup)*
 
-## Things that would be removed easilly but don't make a lot of sense
+## Things that would be implemented easily but don't make a lot of sense, and we won't do for now
 
 1. **Core Plugins**
 * `/Applications/Pro Tools.app/Contents/Plugins/Core Plug-Ins/`
