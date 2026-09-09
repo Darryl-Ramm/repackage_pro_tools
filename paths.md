@@ -31,7 +31,7 @@ Claude to build the script, and Claude helped update it.
 
 ### New items to add:
 
-8. **PACE/iLok License Manager Installer**
+8. **PACE/iLok License Manager**
 * `/tmp/PACE/LicenseSupport.pkg`
 * *(remove the PACE directory and everything in it)*
 
