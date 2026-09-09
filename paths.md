@@ -23,7 +23,7 @@ Claude to build the script, and Claude helped update it.
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/Melodyne.pkg`
 
 6. **Pro Tools Demo Sessions**
-* `/tmp/Demo_Session`
+* `${PAYLOAD_EXTRACT_DIR}/tmp/Demo_Session`
 
 7. **Avid Video Engine**
 * `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/Frameworks/Video Engine/`
@@ -32,28 +32,28 @@ Claude to build the script, and Claude helped update it.
 ### New items to add:
 
 8. **PACE/iLok License Manager**
-* `/tmp/PACE/LicenseSupport.pkg`
+* `${PAYLOAD_EXTRACT_DIR}/tmp/PACE/LicenseSupport.pkg`
 * *(remove the PACE directory and everything in it)*
 
 9. **Video Test Patterns**
-* `/Applications/Pro Tools.app/Contents/SharedSupport/Factory Content/Video Test Patterns/`
+* `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/SharedSupport/Factory Content/Video Test Patterns/`
 
 10. **Tutorial Sessions**
-* `/Applications/Pro Tools.app/Contents/SharedSupport/Factory Content/Tutorials/`
+* `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/SharedSupport/Factory Content/Tutorials/`
 
 11. **HTML Help**
-* `/Applications/Pro Tools.app/Contents/PTHelp/`
+* `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/PTHelp/`
 
 12. **PDF Manuals**
-* `/Applications/Pro Tools.app/Contents/SharedSupport/Documentation/`
+* `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/SharedSupport/Documentation/`
 * *(Removing these prevents Pro Tools every recopying them to /Users/Shared on each startup)*
 
 ### Things that would be implemented easily but don't make a lot of sense, and we won't do for now
 
 13. **Core Plugins**
-* `/Applications/Pro Tools.app/Contents/Plugins/Core Plug-Ins/`
+* `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/Plugins/Core Plug-Ins/`
 * *(Would step thought each .aaxplugin file there)*
 
 14. **Systems Plugins**
-* `/Applications/Pro Tools.app/Contents/Plugins/System Plug-Ins/`
+* `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/Plugins/System Plug-Ins/`
 * *(Would step thought each .aaxplugin file there)*
