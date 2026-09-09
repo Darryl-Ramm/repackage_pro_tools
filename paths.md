@@ -33,7 +33,7 @@ Claude to build the script, and Claude helped update it.
 
 1. **PACE/iLok License Manager Installer**
 * `/tmp/PACE/LicenseSupport.pkg`
-* *(remove the PACE directory and everything in it)
+* *(remove the PACE directory and everything in it)*
 
 1. **Video Test Patterns**
 * `/Applications/Pro Tools.app/Contents/SharedSupport/Factory Content/Video Test Patterns/`
@@ -52,8 +52,8 @@ Claude to build the script, and Claude helped update it.
 
 1. **Core Plugins**
 * `/Applications/Pro Tools.app/Contents/Plugins/Core Plug-Ins/`
-* *(Would step thought each .aaxplugin file there)
+* *(Would step thought each .aaxplugin file there)*
 
 1 **Systems Plugins**
 * `/Applications/Pro Tools.app/Contents/Plugins/System Plug-Ins/`
-* *(Would step thought each .aaxplugin file there
+* *(Would step thought each .aaxplugin file there)*
