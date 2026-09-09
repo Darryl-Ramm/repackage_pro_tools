@@ -8,17 +8,13 @@ Claude to build the script, and Claude helped update it.
 1. **Avid Link / Application Manager**
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/AvidLink_Installer.pkg`
 * `${EXPAND_DIR}/Pro Tools AppMan.pkg`
-
 1. **Pro Tools Sketch**
 * `${PAYLOAD_EXTRACT_DIR}/Applications/Pro Tools.app/Contents/PlugIns/System Plug-Ins/Pro Tools Sketch.aaxplugin`
 * *(Plus clearing the staging artifacts like `/tmp/Go_Sketch/`)*
-
 1. **SoundFlow Integration**
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/SoundFlowProTools.pkg`
-
 1. **Splice Integration**
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/SpliceProTools.pkg`
-
 1. **Melodyne / Celemony**
 * `${EXPAND_DIR}/Pro Tools Application.pkg/Scripts/Melodyne.pkg`
 
