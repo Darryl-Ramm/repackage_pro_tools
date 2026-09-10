@@ -17,7 +17,7 @@ jobs:
       - name: Inject Version
         run: |
           VERSION="${{ github.ref_name }}"
-          sed -i "s/@@VERSION@@/$VERSION/g" recolor_pdf.sh
+          sed -i "s/@@VERSION@@/$VERSION/g" repackage_pro_tools.sh
 
       - name: Create Release and Upload Asset
         uses: softprops/action-gh-release@v1
