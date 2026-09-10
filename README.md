@@ -1,7 +1,10 @@
 # repackage_pro_tools
 [![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/repackage_pro_tools?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/repacakge_pro_tools/releases/latest)
 
-Repackage your own Avid Pro Tools isntallers to avoid installing all the bloatware
+Repackage your own stripped down, bloatware removed, Avid Pro Tools installer .pkg file starting from a standard Pro Tools installer .dmg images.
+
+This was developed and tested on the Pro_Tools_2026.4.1_Mac.dmg
+
 
 Add -w wait option to susepct repacakgin until ready or a ... -p pack option to repack an modified tree???
 
