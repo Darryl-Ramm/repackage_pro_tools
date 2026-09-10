@@ -33,7 +33,7 @@
 
 set -euo pipefail
 
-GIT_TAG_VERSION="@@VERSION@@"
+GIT_TAG_VERSION="@@@VERSION@@@"
 
 usage() {
     cat <<EOF
@@ -135,6 +135,12 @@ SKETCH_PLUGIN="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/PlugIns/System
 GO_SKETCH_DIR="${PAYLOAD_DIR}/tmp/Go_Sketch"
 VIDEO_ENGINE="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/Frameworks/Video Engine"
 DEMO_SESSIONS_DIR="${PAYLOAD_DIR}/tmp/Demo_Session"
+
+PACE_DIR="${PAYLOAD_DIR}/tmp/PACE"
+VIDEO_TEST_PATTERNS_DIR="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/SharedSupport/Factory Content/Video Test Patterns"
+TUTORIALS_DIR="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/SharedSupport/Factory Content/Tutorials"
+HTML_HELP_DIR="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/PTHelp"
+PDF_MANUALS_DIR="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/SharedSupport/Documentation"
 
 # mkbom (Xcode Command Line Tools) is only needed to regenerate the Bill of
 # Materials after a payload-level edit (Sketch / Video Engine / Demo
@@ -385,20 +391,44 @@ if [[ "${MKBOM_AVAILABLE}" == true ]]; then
 
     if prompt_yes_no "Remove Pro Tools Demo Sessions? [$(size_of "${DEMO_SESSIONS_DIR}")]" "Y"; then
         PURGE_DEMO_SESSIONS=true; else PURGE_DEMO_SESSIONS=false; fi
+
+    if prompt_yes_no "Remove PACE/iLok License Manager (tmp/PACE)? [$(size_of "${PACE_DIR}")]" "Y"; then
+        PURGE_PACE=true; else PURGE_PACE=false; fi
+
+    if prompt_yes_no "Remove Video Test Patterns? [$(size_of "${VIDEO_TEST_PATTERNS_DIR}")]" "Y"; then
+        PURGE_VIDEO_TEST_PATTERNS=true; else PURGE_VIDEO_TEST_PATTERNS=false; fi
+
+    if prompt_yes_no "Remove Tutorial Sessions? [$(size_of "${TUTORIALS_DIR}")]" "Y"; then
+        PURGE_TUTORIALS=true; else PURGE_TUTORIALS=false; fi
+
+    if prompt_yes_no "Remove HTML Help? [$(size_of "${HTML_HELP_DIR}")]" "Y"; then
+        PURGE_HTML_HELP=true; else PURGE_HTML_HELP=false; fi
+
+    if prompt_yes_no "Remove PDF Manuals? [$(size_of "${PDF_MANUALS_DIR}")]" "Y"; then
+        PURGE_PDF_MANUALS=true; else PURGE_PDF_MANUALS=false; fi
 else
     PURGE_SKETCH=false
     PURGE_VIDEO_ENGINE=false
     PURGE_DEMO_SESSIONS=false
+    PURGE_PACE=false
+    PURGE_VIDEO_TEST_PATTERNS=false
+    PURGE_TUTORIALS=false
+    PURGE_HTML_HELP=false
+    PURGE_PDF_MANUALS=false
     echo ""
     echo "Note: \"mkbom\" isn't installed (it ships with Xcode Command Line"
-    echo "Tools, not stock macOS), so these three removals are unavailable"
-    echo "this run: Pro Tools Sketch, Avid Video Engine, Demo Sessions."
+    echo "Tools, not stock macOS), so these removals are unavailable this"
+    echo "run: Pro Tools Sketch, Avid Video Engine, Demo Sessions, PACE/iLok"
+    echo "License Manager, Video Test Patterns, Tutorial Sessions, HTML Help,"
+    echo "PDF Manuals."
     echo "Install with: xcode-select --install"
 fi
 
 ANY_PURGE=false
 for v in "${PURGE_AVID_LINK}" "${PURGE_SOUNDFLOW}" "${PURGE_SPLICE}" \
-         "${PURGE_MELODYNE}" "${PURGE_SKETCH}" "${PURGE_VIDEO_ENGINE}" "${PURGE_DEMO_SESSIONS}"; do
+         "${PURGE_MELODYNE}" "${PURGE_SKETCH}" "${PURGE_VIDEO_ENGINE}" "${PURGE_DEMO_SESSIONS}" \
+         "${PURGE_PACE}" "${PURGE_VIDEO_TEST_PATTERNS}" "${PURGE_TUTORIALS}" \
+         "${PURGE_HTML_HELP}" "${PURGE_PDF_MANUALS}"; do
     [[ "${v}" == true ]] && ANY_PURGE=true && break
 done
 
@@ -454,6 +484,36 @@ if [[ "${PURGE_DEMO_SESSIONS}" == true && -d "${DEMO_SESSIONS_DIR}" ]]; then
     PAYLOAD_MODIFIED=true
 fi
 
+if [[ "${PURGE_PACE}" == true && -d "${PACE_DIR}" ]]; then
+    echo "    Removing PACE/iLok License Manager..."
+    rm -rf "${PACE_DIR}"
+    PAYLOAD_MODIFIED=true
+fi
+
+if [[ "${PURGE_VIDEO_TEST_PATTERNS}" == true && -d "${VIDEO_TEST_PATTERNS_DIR}" ]]; then
+    echo "    Removing Video Test Patterns..."
+    rm -rf "${VIDEO_TEST_PATTERNS_DIR}"
+    PAYLOAD_MODIFIED=true
+fi
+
+if [[ "${PURGE_TUTORIALS}" == true && -d "${TUTORIALS_DIR}" ]]; then
+    echo "    Removing Tutorial Sessions..."
+    rm -rf "${TUTORIALS_DIR}"
+    PAYLOAD_MODIFIED=true
+fi
+
+if [[ "${PURGE_HTML_HELP}" == true && -d "${HTML_HELP_DIR}" ]]; then
+    echo "    Removing HTML Help..."
+    rm -rf "${HTML_HELP_DIR}"
+    PAYLOAD_MODIFIED=true
+fi
+
+if [[ "${PURGE_PDF_MANUALS}" == true && -d "${PDF_MANUALS_DIR}" ]]; then
+    echo "    Removing PDF Manuals..."
+    rm -rf "${PDF_MANUALS_DIR}"
+    PAYLOAD_MODIFIED=true
+fi
+
 if [[ "${PAYLOAD_MODIFIED}" == true ]]; then
     echo "==> Repacking payload and regenerating Bom..."
     rm -f "${APP_PKG_DIR}/Payload"
@@ -494,45 +554,4 @@ fi
 
 if [ "$PURGE_SPLICE" = "true" ] ; then
    echo "Note: The Splice plugin has been removed but the Splice panel will still be present in the Pro Tools Edit Window right panel (but can be hidden)."
-fi
-#!/bin/bash
-
-INPUT_DMG="Pro_Tools_26.4.1_Mac.dmg"
-
-INPUT_DMG2="PRo_Tools_26.4.1_MAC.DMG"
-
-INPUT_DMG3="PRo_Tools_12.1_MAC.DMG"
-
-INPUT_DMG4="PRo_Tools.DMG"
-
-INPUT_DMG_EXT="${INPUT_DMG##*.}"
-
-echo "INPUT_DMG        = ${INPUT_DMG}"
-
-regex_pattern='^Pro_Tools_[0-9]*.[0-9]*(.[0-9]*)_Mac.dmg'
-
-shopt -s nocasematch
-
-if [[ "${INPUT_DMG}" =~ ${regex_pattern} ]]; then
-    echo "Match found!"
-else
-    echo "No match."
-fi
-
-if [[ "${INPUT_DMG2}" =~ ${regex_pattern} ]]; then
-    echo "Match found!"
-else
-    echo "No match."
-fi
-
-if [[ "${INPUT_DMG3}" =~ ${regex_pattern} ]]; then
-    echo "Match found!"
-else
-    echo "No match."
-fi
-
-if [[ "${INPUT_DMG4}" =~ ${regex_pattern} ]]; then
-    echo "Match found!"
-else
-    echo "No match."
 fi
