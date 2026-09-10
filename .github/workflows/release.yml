@@ -22,6 +22,6 @@ jobs:
       - name: Create Release and Upload Asset
         uses: softprops/action-gh-release@v1
         with:
-          files: recolor_pdf.sh
+          files: repackage_pro_tools.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
