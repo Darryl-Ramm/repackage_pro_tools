@@ -64,17 +64,15 @@ For more usage information and command line options use `repackage_pro_tools.sh 
 
 `repackage_pro_tools.sh` is intended for personal use and internal sharing within a user's organization, not public redistribution.
 
-This tool produces an unsigned .pkg by expanding the package content, deleting components and re-flattening the package, this discards the cryptographic .pkg signing. The new .pkg will no longer be signed by Avid, however a user can still run that unsigned package.  Mac OS requires admin credentials to install any .pkg regardless of signing, that remains unchanged. 
+This tool produces an unsigned .pkg by expanding the package content, deleting components and re-flattening the package, this discards the cryptographic .pkg signing. The new .pkg will no longer be signed by Avid, however a user can still run that unsigned package. Mac OS requires admin credentials to install any .pkg regardless of signing, that remains unchanged.
 
 The repackaged .pkg on the machine it was created on does not have any quarantine restrictions applied like it would be if that same unsigned packaged had been downloaded say with a Web browser. That download would normally apply a quarantine to the file and when the unsigned .pkg is run Gatekeeper would issue a warning that Apple cannot check for malicious software (because it's not signed).
 
-If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop macOS the file will be quarantined and Gatekeeper invoked when it's run so the user will see an "Apple cannot check for malicious content" warning. If you see that you can still run the .pkg from the command line in Terminal.app using the macOS installer command.
-e.g. 
+If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop the file will be quarantined and Gatekeeper invoked when it's run so the user will see an "Apple cannot check for malicious content" warning. If you see that you can still run the .pkg from the command line in Terminal.app using the macOS installer command. e.g.
 ```
 sudo installer -pkg Pro_Tools_Install_26.4.1_Clean.pkg -target /
 ```
-When copying modified .pkg files within your organization you can avoid the gatekeeper warning by moving files on removable media like a USB thumb drive, copying files off a file server, or using the wget command line utility to download from a intranet web server. 
-
+When copying modified .pkg files within your organization you can avoid Gatekeeper by moving files between Macs on removable media like a USB thumb drive, copying files off a file server, or using the wget command line utility to download from a intranet web server. 
 
 ## Issues
 
@@ -87,6 +85,10 @@ When copying modified .pkg files within your organization you can avoid the gate
 * The installer script that runs on a modified installer .pkg package does not know that items have been removed from the package and will state the original size required to do the full install.
 * This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It may not work as reliably with past or future versions.
 * `repackage_pro_tools.sh` does not replace the modified Pro Tools .pkg file back into a .dmg disk image. Again the intent is not for users to redistribute anything.
+
+## Acknowledgments
+
+Developed with substantial assistance from Anthropic Claude — debugging installer/XML issues, working through several problems, and revising this documentation.
 
 ----
 
