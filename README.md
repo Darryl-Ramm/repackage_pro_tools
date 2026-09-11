@@ -77,20 +77,18 @@ To see more usage information and command line options use `repackage_pro_tools.
 
 ## Issues
 
-*This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It may now work as reliably with past of future.
-
-*The installer script that runs on a modified installer .pkg package does not know the package had items removed  and will state the original size required to do the full install.
-
-*Removing components here may not remove all mention of or appearahce of that component within Pro Tools. For example removing  SoundFlow or Splice will still leave their correstponging panels in the Clip Area fof the Pro Tools Edit Window. But those can be hidden in the UI. 
+* This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It may now work as reliably with past of future.
+* The installer script that runs on a modified installer .pkg package does not know the package had items removed  and will state the original size required to do the full install.
+* Removing components here may not remove all mention of or appearahce of that component within Pro Tools. For example removing  SoundFlow or Splice will still leave their correstponging panels in the Clip Area fof the Pro Tools Edit Window. But those can be hidden in the UI. 
 
 using these modfeid installers may break software or cause compatibity provlsems, including problems that may not be immedatly obvioys. If that is suspected you can test by doing a full install of Pro Tools using the unmodified .dmg made over your current Pro Tools install.
 
-This is certainly not endorsed by Avid. Avid Support might refuse to provide support if a modified installer is used. So maybe don't mention that :-) and just test by doing an install from a fill installer .dmg if there is a problem.
-
-This does not replace the modified Pro Tools*.pkg file back into a .dmg disk image. Again the intent for users  to redistribute anything.
-
-Using this may cause problems, may not install things properly that Pro Tools relies on in ways not expected, 
+* This is certainly not endorsed by Avid. Avid Support might refuse to provide support if a modified installer is used. So maybe don't mention that :-) and just test by doing an install from a fill installer .dmg if there is a problem.
+* This does not replace the modified Pro Tools*.pkg file back into a .dmg disk image. Again the intent for users  to redistribute anything.
+* Using this may cause problems, may not install things properly that Pro Tools relies on in ways not expected, 
 
 however if three are problems running the a full Avid installer
+
+----
 
 Avid and Pro Tools are trademarks or registered trademarks of Avid Technology, Inc. or its subsidiaries in the United States and/or other countries. Avid and Pro Tools are used here only to clearly identify the product.
