@@ -1,7 +1,5 @@
 # repackage_pro_tools for macOS
-[![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/repackage_pro_tools?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/repackage_pro_tools/releases/latest)
-
-[![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/repackage_pro_tools?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/repackage_pro_tools/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/repackage_pro_tools?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/repackage_pro_tools.sh/releases/latest)
 
 [![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/recolor_pdf.sh?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/recolor_pdf.sh/releases/latest)
 
