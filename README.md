@@ -48,8 +48,6 @@ When copying modified .pkg files within your organization you can avoid the gate
 
 ## Xcode/Xcode Command Line Utilities mkbom Dependency
 
-
-
 repackage_pro_tools.sh removes  components in two possible  ways, it either removes entire pacakges in the Pro Tools main isntaller package, Like Avid Link or it removes sets of files or whole directories from within the installer. Fot the later we have to rebuild the .pkg BOM (Bill of Materials), before repacakign the isntaller. This requires the mkbom (/usr/bin/mkbom) 
 
 If Xcode or the Xcode command line utilties is not installed on
@@ -77,18 +75,16 @@ To see more usage information and command line options use `repackage_pro_tools.
 
 ## Issues
 
-* This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It may now work as reliably with past of future.
-* The installer script that runs on a modified installer .pkg package does not know the package had items removed  and will state the original size required to do the full install.
-* Removing components here may not remove all mention of or appearance of that component within Pro Tools.
+* Using a modified Pro Tools installer may break software or cause compatibility problems, including problems that may not be immediately obvious.
+    * If that is suspected you can do a full install of Pro Tools using the unmodified .dmg made over the current Pro Tools install.
+* Removing components may not remove all mention of or appearance of that component within Pro Tools.
     * For example removing SoundFlow or Splice will still leave their corresponding panels in the Clip Area of the Pro Tools Edit Window. But those can be hidden in the UI. 
-
-using these modfeid installers may break software or cause compatibity provlsems, including problems that may not be immedatly obvioys. If that is suspected you can test by doing a full install of Pro Tools using the unmodified .dmg made over your current Pro Tools install.
-
-* This is certainly not endorsed by Avid. Avid Support might refuse to provide support if a modified installer is used. So maybe don't mention that :-) and just test by doing an install from a fill installer .dmg if there is a problem.
-* This does not replace the modified Pro Tools*.pkg file back into a .dmg disk image. Again the intent for users  to redistribute anything.
+* This is certainly not endorsed by Avid.
+* Avid Support might refuse to provide support if a modified installer is used. So maybe don't mention that :-) and just test by doing an install from a full installer .dmg. 
+* The installer script that runs on a modified installer .pkg package does not know that items have been removed from the pacakge and will state the original size required to do the full install.
+* This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It may not work as reliably with past or future versions.
+* This does not replace the modified Pro Tools .pkg file back into a .dmg disk image. Again the intent is not for users to redistribute anything.
 * Using this may cause problems, may not install things properly that Pro Tools relies on in ways not expected, 
-
-however if three are problems running the a full Avid installer
 
 ----
 
