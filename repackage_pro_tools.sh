@@ -35,6 +35,8 @@ set -euo pipefail
 
 GIT_TAG_VERSION="@@@VERSION@@@"
 
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+
 usage() {
     cat <<EOF
 Usage: $(basename "$0") [-h] [-v] [-k] input_dmg [output_dir]
@@ -141,14 +143,6 @@ VIDEO_TEST_PATTERNS_DIR="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/Shar
 TUTORIALS_DIR="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/SharedSupport/Factory Content/Tutorials"
 HTML_HELP_DIR="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/PTHelp"
 PDF_MANUALS_DIR="${PAYLOAD_DIR}/Applications/Pro Tools.app/Contents/SharedSupport/Documentation"
-
-# mkbom (Xcode Command Line Tools) is only needed to regenerate the Bill of
-# Materials after a payload-level edit (Sketch / Video Engine / Demo
-# Sessions). Detected once here so those three prompts can be skipped
-# cleanly, with an explanation, on a machine without CLT installed — rather
-# than failing partway through Phase 4 after the user already answered yes.
-MKBOM_AVAILABLE=true
-command -v mkbom >/dev/null 2>&1 || MKBOM_AVAILABLE=false
 
 ### Functions
 
@@ -382,47 +376,29 @@ if prompt_yes_no "Remove \"SpliceProTools.pkg\"? [$(size_of "${SPLICE_PKG}")]" "
 if prompt_yes_no "Remove \"Melodyne.pkg\"? [$(size_of "${MELODYNE_PKG}" "${MELODYNE_ALT}")]" "Y"; then
     PURGE_MELODYNE=true; else PURGE_MELODYNE=false; fi
 
-if [[ "${MKBOM_AVAILABLE}" == true ]]; then
-    if prompt_yes_no "Remove \"Pro Tools Sketch.aaxplugin\"? [$(size_of "${SKETCH_PLUGIN}" "${GO_SKETCH_DIR}")]" "Y"; then
-        PURGE_SKETCH=true; else PURGE_SKETCH=false; fi
+if prompt_yes_no "Remove \"Pro Tools Sketch.aaxplugin\"? [$(size_of "${SKETCH_PLUGIN}" "${GO_SKETCH_DIR}")]" "Y"; then
+    PURGE_SKETCH=true; else PURGE_SKETCH=false; fi
 
-    if prompt_yes_no "Remove \"Avid Video Engine\"? [$(size_of "${VIDEO_ENGINE}")]" "Y"; then
-        PURGE_VIDEO_ENGINE=true; else PURGE_VIDEO_ENGINE=false; fi
+if prompt_yes_no "Remove \"Avid Video Engine\"? [$(size_of "${VIDEO_ENGINE}")]" "Y"; then
+    PURGE_VIDEO_ENGINE=true; else PURGE_VIDEO_ENGINE=false; fi
 
-    if prompt_yes_no "Remove Pro Tools Demo Sessions? [$(size_of "${DEMO_SESSIONS_DIR}")]" "Y"; then
-        PURGE_DEMO_SESSIONS=true; else PURGE_DEMO_SESSIONS=false; fi
+if prompt_yes_no "Remove Pro Tools Demo Sessions? [$(size_of "${DEMO_SESSIONS_DIR}")]" "Y"; then
+    PURGE_DEMO_SESSIONS=true; else PURGE_DEMO_SESSIONS=false; fi
 
-    if prompt_yes_no "Remove PACE/iLok License Manager (tmp/PACE)? [$(size_of "${PACE_DIR}")]" "Y"; then
-        PURGE_PACE=true; else PURGE_PACE=false; fi
+if prompt_yes_no "Remove PACE/iLok License Manager (tmp/PACE)? [$(size_of "${PACE_DIR}")]" "Y"; then
+    PURGE_PACE=true; else PURGE_PACE=false; fi
 
-    if prompt_yes_no "Remove Video Test Patterns? [$(size_of "${VIDEO_TEST_PATTERNS_DIR}")]" "Y"; then
-        PURGE_VIDEO_TEST_PATTERNS=true; else PURGE_VIDEO_TEST_PATTERNS=false; fi
+if prompt_yes_no "Remove Video Test Patterns? [$(size_of "${VIDEO_TEST_PATTERNS_DIR}")]" "Y"; then
+    PURGE_VIDEO_TEST_PATTERNS=true; else PURGE_VIDEO_TEST_PATTERNS=false; fi
 
-    if prompt_yes_no "Remove Tutorial Sessions? [$(size_of "${TUTORIALS_DIR}")]" "Y"; then
-        PURGE_TUTORIALS=true; else PURGE_TUTORIALS=false; fi
+if prompt_yes_no "Remove Tutorial Sessions? [$(size_of "${TUTORIALS_DIR}")]" "Y"; then
+    PURGE_TUTORIALS=true; else PURGE_TUTORIALS=false; fi
 
-    if prompt_yes_no "Remove HTML Help? [$(size_of "${HTML_HELP_DIR}")]" "Y"; then
-        PURGE_HTML_HELP=true; else PURGE_HTML_HELP=false; fi
+if prompt_yes_no "Remove HTML Help? [$(size_of "${HTML_HELP_DIR}")]" "Y"; then
+    PURGE_HTML_HELP=true; else PURGE_HTML_HELP=false; fi
 
-    if prompt_yes_no "Remove PDF Manuals? [$(size_of "${PDF_MANUALS_DIR}")]" "Y"; then
-        PURGE_PDF_MANUALS=true; else PURGE_PDF_MANUALS=false; fi
-else
-    PURGE_SKETCH=false
-    PURGE_VIDEO_ENGINE=false
-    PURGE_DEMO_SESSIONS=false
-    PURGE_PACE=false
-    PURGE_VIDEO_TEST_PATTERNS=false
-    PURGE_TUTORIALS=false
-    PURGE_HTML_HELP=false
-    PURGE_PDF_MANUALS=false
-    echo ""
-    echo "Note: \"mkbom\" isn't installed (it ships with Xcode Command Line"
-    echo "Tools, not stock macOS), so these removals are unavailable this"
-    echo "run: Pro Tools Sketch, Avid Video Engine, Demo Sessions, PACE/iLok"
-    echo "License Manager, Video Test Patterns, Tutorial Sessions, HTML Help,"
-    echo "PDF Manuals."
-    echo "Install with: xcode-select --install"
-fi
+if prompt_yes_no "Remove PDF Manuals? [$(size_of "${PDF_MANUALS_DIR}")]" "Y"; then
+    PURGE_PDF_MANUALS=true; else PURGE_PDF_MANUALS=false; fi
 
 ANY_PURGE=false
 for v in "${PURGE_AVID_LINK}" "${PURGE_SOUNDFLOW}" "${PURGE_SPLICE}" \
