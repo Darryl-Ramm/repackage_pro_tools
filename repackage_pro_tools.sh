@@ -33,7 +33,7 @@
 
 set -euo pipefail
 
-GIT_TAG_VERSION="@@@VERSION@@@"
+GIT_TAG_VERSION="@@VERSION@@"
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 
