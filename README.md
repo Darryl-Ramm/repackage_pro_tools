@@ -22,7 +22,7 @@ The sizes here are the size of the items removed from the installer .pkg, these 
 
 `repackage_pro_tools.sh` can be run on an Intel based Mac or an Apple Silicon based Mac and the resulting .pkg file can be run on both Intel and Apple Silicon based Macs.
 
-Avid distribute Pro Tools macOS installers as disk .dmg image containing multiple .pkg package images. Besides the Pro Tools .pkg installer there are additional .pkg installers, such as the Avid HD Driver and Pro Tools Audio Bridge. And of these additional .pkg installers found in the .dmg file are copied to the output directory (default is the same directory the .dmg) alongside the new reduced Pro Tools .pkg file. 
+Avid distribute Pro Tools macOS installers as disk .dmg image containing multiple .pkg package images. Besides the Pro Tools .pkg installer there are additional .pkg installers in the .dmg image, such as the Avid HD Driver and Pro Tools Audio Bridge. And of these additional .pkg installers found in the .dmg file are copied to the output directory (default is the same directory the .dmg) alongside the new reduced Pro Tools .pkg file. 
 
 Other items in the installer .pkg like the Avid Link (including vestiges of App Manager) and PACE/iLok License manager are shipped as .pkg installers within the main Pro Tools .pkg installer. By just removing those sub- ackages they no longer get to run during a Pro Tools install.
 
