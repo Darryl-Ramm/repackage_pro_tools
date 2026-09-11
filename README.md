@@ -48,14 +48,14 @@ sudo installer -pkg Pro_Tools_Install_26.4.1_Clean.pkg -target /
 When copying modified .pkg files within your organization you can avoid the gatekeeper warning by moving files on removable media like a USB thumb drive, copying files off a file server, or using the wget command line utility to download from a intranet web server. 
 
 ## Download and Installation
-Download the latest release script, you can click on the Releases on the right side of this page and click on the latest release and then download `repackage_pro_tools.sh`. 
+Download the latest release script, look for the Releases section on the right side of the GitHub page for this project page,  click on the latest release show there and then download `repackage_pro_tools.sh` from that release.
 
 Or you can do this from a Terminal.app command line with
 
 ```
 curl -sL -O https://github.com/Darryl-Ramm/repackage_pro_tools/releases/latest/download/repackage_pro_tools.sh
 ```
-Make the script executable:
+Make the downloaded script executable:
 ```
 chmod +x repackage_pro_tools.sh
 ```
