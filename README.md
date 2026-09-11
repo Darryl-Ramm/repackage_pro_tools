@@ -3,6 +3,8 @@
 
 A shell script that repackages a stripped down Avid Pro Tools .pkg installer. The script allows the user to select what components to remove, starting from the Pro Tools installer that Avid distribute in .dmg disk images. Users can package their own reduced feature installers and avoid problems or just wasted effort manually uninstalling the bundled bloatware, especially Avid Link. The intention is to show this is possible, and allow users to use these modified installers on their own or their organization's Mac computers to help solve problems and make use of Pro Tools easier. This tool is strictly intended for personal or internal organizational use; not public redistribution of modified packages. 
 
+This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It has not been widely tested with other .dmg images, the goal is to more show what is possible not to support this as a "product". 
+
 `repackage_pro_tools.sh` currently allows the user to choose to remove any of the following items
 
 * Avid Link [~129MB]
@@ -24,14 +26,12 @@ The sizes here are the size of the items removed from the installer .pkg, these 
 
 Avid distribute Pro Tools macOS installers as disk .dmg image containing multiple .pkg package images. Besides the main Pro Tools .pkg installer, the .dmg image contains additional installers, such as the Avid HD Driver and Pro Tools Audio Bridge. These additional installers are automatically copied to the output directory alongside the new reduced Pro Tools .pkg file. 
 
-Other items in the installer .pkg like the Avid Link (including vestiges of App Manager) and PACE/iLok License manager are shipped as .pkg installers within the main Pro Tools .pkg installer. By removing those sub-packages they no longer run during a Pro Tools install.
+Other items like the Avid Link (including vestiges of App Manager) and PACE/iLok License manager are shipped as .pkg installers within the main Pro Tools .pkg installer. By removing those sub-packages they no longer run during a Pro Tools install.
 
 A big win here for many users will be just removing Avid Link. Many users don't want that installed and it reinstalling itself every time Pro Tools is installed is a pain. We simply remove the Avid Link .pkg inside the Pro Tools installer .pkg so it never runs.
 
 Here removing the PACE/iLok license manger means you need to have that installed separately, and most Pro Tools users likely already have that installed and often have a later version that the version included inside any Pro Tools installer they are going to run.  Nothing here reduces the requirements to have, or tries to technically bypass in any way the Pro Tools and any third party license authorizations, it's just reducing what is in an installer package.  
     
-This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg
-
 ## Unsigned Package
 
 `repackage_pro_tools.sh` is intended for personal use and internal sharing within a user's organization, not public redistribution.
@@ -72,7 +72,7 @@ For more usage information and command line options use `repackage_pro_tools.sh 
 ## Issues
 
 * Using a modified Pro Tools installer may break software or cause compatibility problems, including problems that may not be immediately obvious.
-    * If that is suspected you can do a full install of Pro Tools using the unmodified .dmg made over the current Pro Tools install.
+    * If that is suspected you can do a full install of Pro Tools using the unmodified .dmg over the top of the current Pro Tools install.
 * Removing components may not remove all mention of or appearance of that component within Pro Tools.
     * For example removing SoundFlow or Splice will still leave their corresponding panels in the Clip Area of the Pro Tools Edit Window. But those can be hidden in the UI.
 * This is certainly not endorsed by Avid.
@@ -80,7 +80,6 @@ For more usage information and command line options use `repackage_pro_tools.sh 
 * The installer script that runs on a modified installer .pkg package does not know that items have been removed from the package and will state the original size required to do the full install.
 * This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It may not work as reliably with past or future versions.
 * `repackage_pro_tools.sh` does not replace the modified Pro Tools .pkg file back into a .dmg disk image. Again the intent is not for users to redistribute anything.
-* Using this may cause problems, may not install things properly that Pro Tools relies on in ways not expected, 
 
 ----
 
