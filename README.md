@@ -20,11 +20,11 @@ repackage_pro_tools currently allows the user to choose to remove any of the fol
 
 The sizes here are the size of the items removed from the installer .pkg, these components will actually consume more space when actually installed. Some of these take around double the space on disk. For example the PDF manuals and Video Test patterns are stored inside the Pro Tools.app package and  copied from there to /Users/Shared when Pro Tools starts, it's unnecessary overhead adding to startup time but also doubles the space required on disk. Here we just remove those items from within the Pro Tools.app bundle within the installer .pkg so the files just don't exist there, and are never copied to /User/Shared
 
-This tool can be run on an Intel based Mac or an Apple Silicon based Mac and the resulting .pkg file can be run on both Intel and Apple Silicon based Macs.
+repackage_pro_tools.sh can be run on an Intel based Mac or an Apple Silicon based Mac and the resulting .pkg file can be run on both Intel and Apple Silicon based Macs.
 
-The Pro Tools macOS installer is distributed as a disk .dmg image containing multiple .pkg package images. Besides the Pro Tools .pkg installer thasre are addional .pkg files, such as the Avid HD Driver and Pro Tools Audio Bridge. And og these addional .pkg isntallers found int the .dmg file are copied to the output directory (default is the same directory the .dmg is in) aling side teh new reduced Pro Tools .pkg file. 
+The Pro Tools macOS installer is distributed as a disk .dmg image containing multiple .pkg package images. Besides the Pro Tools .pkg installer there are additional .pkg installers, such as the Avid HD Driver and Pro Tools Audio Bridge. And of these additional .pkg installers found in the .dmg file are copied to the output directory (default is the same directory the .dmg) alongside the new reduced Pro Tools .pkg file. 
 
-Other items in the installer .pkg like the Avid Link (including vestiges of App Manager) and PACE/iLok License manager are shipped as .pkg installers withing the main Pro Tools .pkg installer. By just removing those sub- pacakges they no longer get to run during a Pro Tools install.
+Other items in the installer .pkg like the Avid Link (including vestiges of App Manager) and PACE/iLok License manager are shipped as .pkg installers within the main Pro Tools .pkg installer. By just removing those sub- ackages they no longer get to run during a Pro Tools install.
 
 A big win here for many users will be just removing Avid Link. Many users don't want that installed and it reinstalling itself every time a Pro Tools installer is run, becomes a pain in the ass. We simply remove the Avid Link .pkg inside the Pro Tools installer .pkg so it never runs.
 
@@ -36,13 +36,20 @@ This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg
 
 ## Unsigned Package
 
-repackage_pro_tools.shis intended for personal, local use and internal sharing within your own organization, not public redistribution.
+repackage_pro_tools.sh is intended for personal use and internal sharing within a user's organization, not public redistribution.
 
 This tool produces an unsigned .pkg by expanding the package content, deleting components and re-flattening the package, this discards the cryptographic .pkg signing. The new .pkg will no longer be signed by Avid, however a user can still run that unsigned package.  macOS requires admin credentials to install any .pkg regardless of signing, that remains unchanged. 
 
 The repackaged .pkg on the machine it was created on does not have any quarantine restrictions applied like it would be if that same unsigned packaged had been downloaded say with a Web browser. That download would normally apply a quarantine to the file and when the unsigned .pkg is run Gatekeeper would issue a warning that Apple cannot check for malicious software (because it's not signed).
 
-If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop macOS the file will be quarantiend and Gatekeeper invoked when it's run witht hat "Apple cannot check for malicios content" warning, if you see that, right-click the .pkg and choose Open rather than double-clicking; you will be prompted for admin credentials from there. Alternatively, sudo installer -pkg <path-to-pkg> -target / from Terminal installs without going through that dialog. 
+If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop macOS the file will be quarantined and Gatekeeper invoked when it's run so the user will see an "Apple cannot check for malicious content" warning. If you see that, right-click or CTRL-click on the .pkg icon and choose Open rather than double-clicking; you will be prompted for admin credentials from there. Alternatively you cn run this .pkg from a command line in Terminal.app usibg
+
+```
+sudo installer -pkg <path-to-pkg> -target
+```
+```
+sudo installer -pkg <path-to-pkg> -target
+```
 
 When copying modified .pkg files within your organization you can avoid the gatekeeper warning by moving files on removable media like a USB thumb drive, copying files off a file server, or using the wget command line utility to download from a intranet web server. 
 
@@ -67,11 +74,11 @@ Run the script against a Pro Tools installer .dmg. For example:
 ```
 ./repackage_pro_tools.sh Pro_Tools_26.4.1_Mac.dmg
 ```
-Follow the prompts and answer the y/n questions about what [packages should be removed from the installer .pkg the script will build.
+Follow the prompts and answer the y/n questions about what packages should be removed from the installer .pkg the script will build.
 
-By degault the script will leave a new a, in this case named Pro_Tools_Install_26.4.1_Clean.pkg. It also copies the Avid HD Driver and
+By degault the script will leave a new .pkg installer, in this example named Pro_Tools_Install_26.4.1_Clean.pkg. 
 
-To see more usage information and command line options use `repackage_pro_tools.sh -h`
+For more usage information and command line options use `repackage_pro_tools.sh -h`
 
 ## Issues
 
