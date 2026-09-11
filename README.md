@@ -40,13 +40,10 @@ This tool produces an unsigned .pkg by expanding the package content, deleting c
 
 The repackaged .pkg on the machine it was created on does not have any quarantine restrictions applied like it would be if that same unsigned packaged had been downloaded say with a Web browser. That download would normally apply a quarantine to the file and when the unsigned .pkg is run Gatekeeper would issue a warning that Apple cannot check for malicious software (because it's not signed).
 
-If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop macOS the file will be quarantined and Gatekeeper invoked when it's run so the user will see an "Apple cannot check for malicious content" warning. If you see that, right-click or CTRL-click on the .pkg icon and choose Open rather than double-clicking; you will be prompted for admin credentials from there. Alternatively you cn run this .pkg from a command line in Terminal.app usibg
-
+If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop macOS the file will be quarantined and Gatekeeper invoked when it's run so the user will see an "Apple cannot check for malicious content" warning. If you see that, right-click or CTRL-click on the .pkg icon and choose Open rather than double-clicking; you will be prompted for admin credentials from there. Alternatively you cn run this .pkg from a command line in Terminal.app using the macOS installer command.
+e.g. 
 ```
-sudo installer -pkg <path-to-pkg> -target
-```
-```
-sudo installer -pkg <path-to-pkg> -target
+sudo installer -pkg Pro_Tools_Install_26.4.1_Clean.pkg -target /
 ```
 
 When copying modified .pkg files within your organization you can avoid the gatekeeper warning by moving files on removable media like a USB thumb drive, copying files off a file server, or using the wget command line utility to download from a intranet web server. 
