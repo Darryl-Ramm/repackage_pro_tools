@@ -1,7 +1,7 @@
 # repackage_pro_tools for macOS
 [![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/repackage_pro_tools?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/repacakge_pro_tools/releases/latest)
 
-Repackage your own stripped down Avid Pro Tools .pkg installer by selecting what bloatware to remove from the official Pro Tools installer that Avid distribute as .dmg images. The intent here is to allow users to package their own reduced feature installers and avoid problems or just wasted effort manually uninstalling the bundled bloatware, especially Avid Link. The intention is users use these modified installers on their own or their organization's Mac computers. Nobody should redistribute a modified packages outside of that. 
+Repackage your own stripped down Avid Pro Tools .pkg installer by selecting what bloatware to remove from the official Pro Tools installer that Avid distribute in .dmg disk images. The intent here is to allow users to package their own reduced feature installers and avoid problems or just wasted effort manually uninstalling the bundled bloatware, especially Avid Link. The intention is users use these modified installers on their own or their organization's Mac computers. Nobody should redistribute a modified packages outside of that. 
 
 repackage_pro_tools currently allows the user to choose to remove any of the following items
 
