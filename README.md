@@ -20,7 +20,7 @@ This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. 
 * HTML Help? [~267MB]
 * PDF Manuals? [~165MB]
 
-The sizes here are the size of the items removed from the installer .pkg, these components may consume more space when actually installed. Some of these items are copied out of the Pro Tools.app bundle into each Pro Tools user's ~/Documents/Pro Tools directory, such as Documentation, Demo Sessions, Sketch Demo sessions etc. It's unnecessary overhead adding to the Pro Tools startup time but also adds more storage need for each user, often for content that users don't even understand is there. Here if a user selects to we just remove those items from within the Pro Tools.app bundle within the installer .pkg so the files just don't exist there, and are never copied to users' Documents/Pro Tools.
+The sizes here are the size of the items removed from the installer .pkg in Pro Tools 2026.4.1, these components may consume more space when actually installed. Some of these items are copied out of the Pro Tools.app bundle into each Pro Tools user's ~/Documents/Pro Tools directory, that includes Documentation, Demo Sessions, Sketch Demo sessions etc. It can be unnecessary overhead adding to the Pro Tools startup time but also adds more storage need for each user, often for content that users don't even understand is there. Here if a user selects to we just remove those items from within the Pro Tools.app bundle within the installer .pkg so the files just don't exist there, and are never copied to users' Documents/Pro Tools.
 
 `repackage_pro_tools.sh` can be run on an Intel based Mac or an Apple Silicon based Mac and the resulting .pkg file can be run on both Intel and Apple Silicon based Macs.
 
