@@ -30,7 +30,11 @@ Other items like the Avid Link (including vestiges of App Manager) and PACE/iLok
 
 A big win here for many users will be just removing Avid Link. Many users don't want that installed and it reinstalling itself every time Pro Tools is installed is a pain. We simply remove the Avid Link .pkg inside the Pro Tools installer .pkg so it never runs.
 
-Here removing the PACE/iLok license manger means you need to have that installed separately, and most Pro Tools users likely already have that installed and often have a later version that the version included inside any Pro Tools installer they are going to run.  Nothing here reduces the requirements to have, or tries to technically bypass in any way the Pro Tools and any third party license authorizations, it's just reducing what is in an installer package.  
+Here removing the PACE/iLok license manger means you need to have that installed separately, and most Pro Tools users likely already have that installed and often have a later version that the version included inside any Pro Tools installer they are going to run.  Nothing here reduces the requirements to have, or tries to technically bypass in any way the Pro Tools and any third party license authorizations, it's just reducing what is in an installer package.
+
+## Not an Uninstaller
+
+`repackage_pro_tools.sh` is not an uninstaller for what is currently installed on your Mac. If you have already run a full Pro Tools installer on the Mac, then running a .pkg installer produced here won't remove anything. You may will need to separately uninstall everything else you don't want if it's already installed, start by running the uninstall script at `/Applications/Avid_Uninstallers/Uninstall Pro Tools.command`, but note that that script has not been updated in years and does not for example remove SoundFlow.app. You can drag /Applications/SoundFlow.app to the trash. You should also remove items in /Users/Shared that Pro Tools automatically installs that you no longer want there, such as PDF documentation and video test patterns. It would be a natural extension of what this current script does to also do all that, but for now it's focued on removing bloatware in the installer package.
     
 ## Unsigned Package
 
