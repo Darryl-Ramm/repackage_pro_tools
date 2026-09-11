@@ -18,7 +18,7 @@ A shell script that repackages a stripped down Avid Pro Tools .pkg installer. Th
 * HTML Help? [~267MB]
 * PDF Manuals? [~165MB]
 
-The sizes here are the size of the items removed from the installer .pkg, these components will actually consume more space when actually installed. Some of these take around double the space on disk. For example the PDF manuals and Video Test patterns are stored inside the Pro Tools.app package and  copied from there to /Users/Shared when Pro Tools starts, it's unnecessary overhead adding to startup time but also doubles the space required on disk. Here we just remove those items from within the Pro Tools.app bundle within the installer .pkg so the files just don't exist there, and are never copied to /User/Shared
+The sizes here are the size of the items removed from the installer .pkg, these components will often consume more space when actually installed. Some of these take around double the space on disk. For example the PDF manuals and Video Test patterns are stored inside the Pro Tools.app package and  copied from there to /Users/Shared when Pro Tools starts, it's unnecessary overhead adding to startup time but also doubles the space required on disk. Here we just remove those items from within the Pro Tools.app bundle within the installer .pkg so the files just don't exist there, and are never copied to /User/Shared
 
 `repackage_pro_tools.sh` can be run on an Intel based Mac or an Apple Silicon based Mac and the resulting .pkg file can be run on both Intel and Apple Silicon based Macs.
 
