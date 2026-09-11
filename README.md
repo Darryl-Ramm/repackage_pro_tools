@@ -1,32 +1,89 @@
-# repackage_pro_tools
+# repackage_pro_tools for macOS
 [![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/repackage_pro_tools?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/repacakge_pro_tools/releases/latest)
 
-Repackage your own stripped down, bloatware removed, Avid Pro Tools installer .pkg file starting from a standard Pro Tools installer .dmg images.
+Repackage your own stripped down Avid Pro Tools .pkg installer by selecting what bloatware to remove from the official Pro Tools installer that Avid distribute as .dmg images. The intent here is to allow users to package their own modified installers, these can be installed on the user or their organization's Mac computers. There is no intention here that anybody should redistribute these packages outside of that. 
 
-This was developed and tested on the Pro_Tools_2026.4.1_Mac.dmg
+repackage_pro_tools currently allows you to select to remove the following items
 
+* Avid Link [~129MB]
+* SoundFlow [~361MB]
+* Splice [~22MB]
+* Melodyne [~96MB]
+* Sketch [~1.1GB]
+* Avid Video Engine [~2.8GB]
+* Pro Tools Demo Sessions [~455MB]
+* PACE/iLok License Manager [~115M]
+* Video Test Patterns? [~95MB]
+* Tutorial Sessions? [~75MB]
+* HTML Help? [~267MB]
+* PDF Manuals? [~165MB]
 
-Add -w wait option to susepct repacakgin until ready or a ... -p pack option to repack an modified tree???
+These sizes are the size of the items removed from the installer .pkg, they will take more space on disk. Some of these take more than doubble the space on disk. For example the PDF manuals and Vireo Test Patters are packated inside the Pro Tools.app package and then copied from there to /Users/Shared when Pro Tools starts up, it's unnecessary overhead adding to startup time but also dfounes the space requiretn on disj. Hwre we just remove those items from within the Pro TOols.app bundle within the installer .pkg.
 
-This is not encouraged by or endorsed by Avid.
-
-The installer script that runs on a modified installer .pkg package does not know it was modified and will state the original size required to do the install.
+What is done here should be universal, in that the tool can be run on an Intel based Mac or an Apple Silicon based Mac and the resulting .pkg file can be run on both Intel and Apple Silicon based Macs.
 
 The Pro Tools macOS installer is distributed as a disk .dmg image containing multiple .pkg package images. The .dmg contains three actual installers.
 
-Install .pkg - The actual Pro Tools software. This alsi includwes mutluple .pkg sub-pacakges
-HD Driver.pkg - The installer for the .kext drivers for Avid Pro Tools HD Native and HDX hardware interfaces. You only need to install these if you have a HD Natice or HDX Inerface and are usign that with Pro Tools Ultimate or with a different DAW via CoreAudio.
+Other items in the installer .pkg like the Avid Link (including vestigaes of App Manager) and PACE/iLok Lixense manager are shipped as .pkg isntallers withing the main PRo Tools .pkg instalelr. By just remobing those sub-pacakgtes they dont' get to run.
 
-Install .pkg includes mutluple .pkg sub-pacakges within it. It's relatively simpel to just remove those sub0packages so they can't ever run.
+A big win here for many users will be just removing Avid Link. Many users don't want that isntalled and it reisntalling itselg every time a Pro Tools installer is run, adn then habing to unisntall that is a PITA. We wimoly remove the Avid Link .pkg inside the Pro Tools installer .pkg so it never runs.
 
-The /Applications/Pro Tools.app application bundle in the .pkg installer is a large pece of software and includes components that are easilly rmovable.
+Here removing the PACE/iLok license manger just means you need to have that installed separately, and most Pro Tools users likely already hae that isntalle and often have a later version that the version included inside any Pro Tools installer they are going to run. 
 
-Pro Tools.app/Contents/Plugins/Core Plugins
+Nothing here reduces the requirements to have, or tries to technically bypass in any way the Pro Tools and any third party license authorizations, it's just reducing what is in an installer package. 
+    
+This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg
 
-These are the core Pro tools AAX plugins distributed with Pro Tools, all other plugins require using separate installers. When Pro Tools starts up it checks in these core plugins are installed in /Library/Application Support/Avid/Audio/Plug-Ins and if not Pro Tools copies these embedded plugins in its app bundle to that plugin directory. Thats a handy way of resetting the core plugins at any times, you just delete them from the plugin folder and restart Pro Tools. Although generally stable there very occasionally can be a problem where one of eh core plugins cause a problem and you need to remove it fromt eh plguign folder, but then every time you restart Pro Tools it gets put back. The solution there has been for a long time to jsut delete the pluging bundle from Pro Tools.app/Contents/Plugins/Core Plugins. Expanding that back to the .pkg installer we could simply remove any core .aaxplugin fromt he app package in the isntaller and Pro Tools will work fine, it just won't have accve to that plugin. 
+## Unsigned Package
 
-Plugin isntallers typically do more than just place a .aaxplugin file in the plugin folder, they may place prefereces/settings, say in the users Documents folder or elsewhre, keep state in ~/Library etc. That is tyupically small, and ther eare no sample based virtual isntuamt libraryes diestibved int eh Pro tools installer, so no large sample based libraies anywhere that we need to uninstall. Well except for Pro Tools .... which we will discuss below.
+repackage_pro_tools.shis intended for personal, local use and internal sharing within your own organization, not public redistribution.
 
+This tool produces an unsigned .pkg by expanding the package content, deleting components and re-flattening the package, this discards the cryptographic .pkg signing. The new .pkg will no longer be signed by Avid, however a user can still run that unsigned package.  macOS requires admin credentials to install any .pkg regardless of signing, that remains unchanged. 
+
+The repackaged .pkg on the machine it was created on does not have any quarantine restrictions applied like it would be if that same unsigned packaged had been downloaded say with a Web browser. That download would normally apply a quarantine to the file and when the unsigned .pkg is run Gatekeeper would issue a warning that Apple cannot check for malicious software (because it's not signed).
+
+If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop macOS the file will be quarantiend and Gatekeeper invoked when it's run witht hat "Apple cannot check for malicios content" warning, if you see that, right-click the .pkg and choose Open rather than double-clicking; you will be prompted for admin credentials from there. Alternatively, sudo installer -pkg <path-to-pkg> -target / from Terminal installs without going through that dialog. 
+
+When copying modified .pkg files within your organization you can avoid the gatekeeper warning by moving files on removable media like a USB thumb drive, copying files off a file server, or using the wget command line utility to download from a intranet web server. 
+
+## Xcode/Xcode Command Line Utilities mkbom Dependency
+
+
+
+repackage_pro_tools.sh removes  components in two possible  ways, it either removes entire pacakges in the Pro Tools main isntaller package, Like Avid Link or it removes sets of files or whole directories from within the installer. Fot the later we have to rebuild the .pkg BOM (Bill of Materials), before repacakign the isntaller. This requires the mkbom (/usr/bin/mkbom) 
+
+If Xcode or the Xcode command line utilties is not installed on
+
+## Download and Installation
+Download the latest release script and make it executable:
+
+```
+curl -sL -O https://github.com/Darryl-Ramm/repackage_pro_tools/releases/latest/download/repackage_pro_tools.sh
+```
+```
+chmod +x repackage_pro_tools.sh
+```
+## Usage
+Run the script against a Pro Tools installer .dmg. For example: 
+
+```
+./repackage_pro_tools.sh Pro_Tools_26.4.1_Mac.dmg
+```
+Follow the prompts and answer the y/n questions about what [packages should be removed from the installer .pkg the script will build.
+
+By degault the script will leave a new a, in this case named Pro_Tools_Install_26.4.1_Clean.pkg. It also copies the Avid HD Driver and
+
+To see more usage information and command line options use `repackage_pro_tools.sh -h`
+
+## Issues
+
+The installer script that runs on a modified installer .pkg package does not know the package had items removed  and will state the original size required to do the full install.
+
+Remocing  compents here may not remove all mention of or appearahce of that component within Pro Tools. For example removing  SoundFlow or Splice will still leave their correstponging panels in the Clip Area fof the Pro Tools Edit Window. But those can be hidden in the UI. 
+
+using these modfeid installers may break software or cause compatibity provlsems, including problems that may not be immedatly obvioys. If that is suspected you can test by doing a full install of Pro Tools using the unmodified .dmg made over your current Pro Tools install.
+
+This is certainly not endorsed by Avid. Avid Support might refuse to provide support if a modified installer is used. So maybe don't mention that :-) and just test by doing an install from a fill installer .dmg if there is a problem.
 
 Somebody wanting to distribiete differet plugin exeecutables pacaktged within a Pro Tools installer
 
@@ -40,4 +97,4 @@ Using this may cause problems, may not install thigns properly that Pro Tools re
 
 however if three are problems running the a full Avid installer
 
-Avid and Pro Tools are trademarks or registered trademarks of Avid Technology, Inc. or its subsidiaries in the United States and/or other countries.
+Avid and Pro Tools are trademarks or registered trademarks of Avid Technology, Inc. or its subsidiaries in the United States and/or other countries. Avid and Pro Tools are used here only to clearly identify the product.
