@@ -24,13 +24,11 @@ The sizes here are the size of the items removed from the installer .pkg, these 
 
 Avid distribute Pro Tools macOS installers as disk .dmg image containing multiple .pkg package images. Besides the Pro Tools .pkg installer there are additional .pkg installers in the .dmg image, such as the Avid HD Driver and Pro Tools Audio Bridge. And of these additional .pkg installers found in the .dmg file are copied to the output directory (default is the same directory the .dmg) alongside the new reduced Pro Tools .pkg file. 
 
-Other items in the installer .pkg like the Avid Link (including vestiges of App Manager) and PACE/iLok License manager are shipped as .pkg installers within the main Pro Tools .pkg installer. By just removing those sub- ackages they no longer get to run during a Pro Tools install.
+Other items in the installer .pkg like the Avid Link (including vestiges of App Manager) and PACE/iLok License manager are shipped as .pkg installers within the main Pro Tools .pkg installer. By removing those sub-packages they no longer run during a Pro Tools install.
 
-A big win here for many users will be just removing Avid Link. Many users don't want that installed and it reinstalling itself every time a Pro Tools installer is run, becomes a pain in the ass. We simply remove the Avid Link .pkg inside the Pro Tools installer .pkg so it never runs.
+A big win here for many users will be just removing Avid Link. Many users don't want that installed and it reinstalling itself every time Pro Tools is installed is a pain. We simply remove the Avid Link .pkg inside the Pro Tools installer .pkg so it never runs.
 
-Here removing the PACE/iLok license manger just means you need to have that installed separately, and most Pro Tools users likely already hae that isntalle and often have a later version that the version included inside any Pro Tools installer they are going to run. 
-
-Nothing here reduces the requirements to have, or tries to technically bypass in any way the Pro Tools and any third party license authorizations, it's just reducing what is in an installer package. 
+Here removing the PACE/iLok license manger means you need to have that installed separately, and most Pro Tools users likely already have that installed and often have a later version that the version included inside any Pro Tools installer they are going to run.  Nothing here reduces the requirements to have, or tries to technically bypass in any way the Pro Tools and any third party license authorizations, it's just reducing what is in an installer package. 
     
 This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg
 
