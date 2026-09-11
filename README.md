@@ -20,7 +20,7 @@ repackage_pro_tools currently allows the user to choose to remove any of the fol
 
 The sizes here are the size of the items removed from the installer .pkg, these components will actually consume more space when actually installed. Some of these take around double the space on disk. For example the PDF manuals and Video Test patterns are stored inside the Pro Tools.app package and  copied from there to /Users/Shared when Pro Tools starts, it's unnecessary overhead adding to startup time but also doubles the space required on disk. Here we just remove those items from within the Pro Tools.app bundle within the installer .pkg so the files just don't exist there, and are never copied to /User/Shared
 
-repackage_pro_tools.sh can be run on an Intel based Mac or an Apple Silicon based Mac and the resulting .pkg file can be run on both Intel and Apple Silicon based Macs.
+`repackage_pro_tools.sh` can be run on an Intel based Mac or an Apple Silicon based Mac and the resulting .pkg file can be run on both Intel and Apple Silicon based Macs.
 
 The Pro Tools macOS installer is distributed as a disk .dmg image containing multiple .pkg package images. Besides the Pro Tools .pkg installer there are additional .pkg installers, such as the Avid HD Driver and Pro Tools Audio Bridge. And of these additional .pkg installers found in the .dmg file are copied to the output directory (default is the same directory the .dmg) alongside the new reduced Pro Tools .pkg file. 
 
@@ -36,7 +36,7 @@ This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg
 
 ## Unsigned Package
 
-repackage_pro_tools.sh is intended for personal use and internal sharing within a user's organization, not public redistribution.
+`repackage_pro_tools.sh` is intended for personal use and internal sharing within a user's organization, not public redistribution.
 
 This tool produces an unsigned .pkg by expanding the package content, deleting components and re-flattening the package, this discards the cryptographic .pkg signing. The new .pkg will no longer be signed by Avid, however a user can still run that unsigned package.  macOS requires admin credentials to install any .pkg regardless of signing, that remains unchanged. 
 
@@ -55,7 +55,7 @@ When copying modified .pkg files within your organization you can avoid the gate
 
 ## Xcode/Xcode Command Line Utilities mkbom Dependency
 
-repackage_pro_tools.sh removes  components in two possible  ways, it either removes entire pacakges in the Pro Tools main isntaller package, Like Avid Link or it removes sets of files or whole directories from within the installer. Fot the later we have to rebuild the .pkg BOM (Bill of Materials), before repacakign the isntaller. This requires the mkbom (/usr/bin/mkbom) 
+`repackage_pro_tools.sh` removes  components in two possible  ways, it either removes entire pacakges in the Pro Tools main isntaller package, Like Avid Link or it removes sets of files or whole directories from within the installer. Fot the later we have to rebuild the .pkg BOM (Bill of Materials), before repacakign the isntaller. This requires the mkbom (/usr/bin/mkbom) 
 
 If Xcode or the Xcode command line utilties is not installed on
 
