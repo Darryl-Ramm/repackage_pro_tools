@@ -80,7 +80,7 @@ To see more usage information and command line options use `repackage_pro_tools.
 * This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It may now work as reliably with past of future.
 * The installer script that runs on a modified installer .pkg package does not know the package had items removed  and will state the original size required to do the full install.
 * Removing components here may not remove all mention of or appearance of that component within Pro Tools.
-  *For example removing SoundFlow or Splice will still leave their corresponding panels in the Clip Area fof the Pro Tools Edit Window. But those can be hidden in the UI. 
+    * For example removing SoundFlow or Splice will still leave their corresponding panels in the Clip Area of the Pro Tools Edit Window. But those can be hidden in the UI. 
 
 using these modfeid installers may break software or cause compatibity provlsems, including problems that may not be immedatly obvioys. If that is suspected you can test by doing a full install of Pro Tools using the unmodified .dmg made over your current Pro Tools install.
 
