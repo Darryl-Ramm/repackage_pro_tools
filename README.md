@@ -3,6 +3,8 @@
 
 [![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/repackage_pro_tools?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/repackage_pro_tools/releases/latest)
 
+[![Latest Release](https://img.shields.io/github/v/release/Darryl-Ramm/recolor_pdf.sh?include_prereleases&sort=semver)](https://github.com/Darryl-Ramm/recolor_pdf.sh/releases/latest)
+
 
 A shell script that repackages a stripped down Avid Pro Tools .pkg installer. The script allows the user to select what components to remove, starting from the Pro Tools installer that Avid distribute in .dmg disk images. Users can package their own reduced feature installers and avoid problems or just wasted effort manually uninstalling the bundled bloatware, especially Avid Link. The intention is to show this is possible, and allow users to use these modified installers on their own or their organization's Mac computers to help solve problems and make use of Pro Tools easier. This tool is strictly intended for personal or internal organizational use; not public redistribution of modified packages. 
 
