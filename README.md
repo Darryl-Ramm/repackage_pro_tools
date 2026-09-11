@@ -34,23 +34,8 @@ Here removing the PACE/iLok license manger means you need to have that installed
 
 ## Not an Uninstaller
 
-`repackage_pro_tools.sh` is not an uninstaller for what is currently installed on your Mac. If you have already run a full Pro Tools installer on the Mac, then running a .pkg installer produced here won't remove anything. You may will need to separately uninstall everything else you don't want if it's already installed, start by running the uninstall script at `/Applications/Avid_Uninstallers/Uninstall Pro Tools.command`, but note that that script has not been updated in years and does not for example remove SoundFlow.app. You can drag /Applications/SoundFlow.app to the trash. You should also remove items in /Users/Shared that Pro Tools automatically installs that you no longer want there, such as PDF documentation and video test patterns. It would be a natural extension of what this current script does to also do all that, but for now it's focued on removing bloatware in the installer package.
+`repackage_pro_tools.sh` is not an uninstaller for what is currently installed on your Mac. If you have already run a full Pro Tools installer on the Mac, then running a .pkg installer produced here won't remove anything. You may will need to separately uninstall everything else you don't want if it's already installed, start by running the uninstall script at `/Applications/Avid_Uninstallers/Uninstall Pro Tools.command`, but note that that script has not been updated in years and does not for example remove SoundFlow.app. You can drag /Applications/SoundFlow.app to the trash. You may also need to manually remove items in /Users/Shared that Pro Tools automatically installs that you no longer want, such as PDF documentation and video test patterns. It would be a natural extension of what this current script does to also clean up current installs, but for now it's focued on removing bloatware in the installer package.
     
-## Unsigned Package
-
-`repackage_pro_tools.sh` is intended for personal use and internal sharing within a user's organization, not public redistribution.
-
-This tool produces an unsigned .pkg by expanding the package content, deleting components and re-flattening the package, this discards the cryptographic .pkg signing. The new .pkg will no longer be signed by Avid, however a user can still run that unsigned package.  Mac OS requires admin credentials to install any .pkg regardless of signing, that remains unchanged. 
-
-The repackaged .pkg on the machine it was created on does not have any quarantine restrictions applied like it would be if that same unsigned packaged had been downloaded say with a Web browser. That download would normally apply a quarantine to the file and when the unsigned .pkg is run Gatekeeper would issue a warning that Apple cannot check for malicious software (because it's not signed).
-
-If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop macOS the file will be quarantined and Gatekeeper invoked when it's run so the user will see an "Apple cannot check for malicious content" warning. If you see that you can still run the .pkg from the command line in Terminal.app using the macOS installer command.
-e.g. 
-```
-sudo installer -pkg Pro_Tools_Install_26.4.1_Clean.pkg -target /
-```
-When copying modified .pkg files within your organization you can avoid the gatekeeper warning by moving files on removable media like a USB thumb drive, copying files off a file server, or using the wget command line utility to download from a intranet web server. 
-
 ## Download and Installation
 Download the latest release script, look for the Releases section on the right side of the GitHub page for this project page,  click on the latest release show there and then download `repackage_pro_tools.sh` from that release.
 
@@ -74,6 +59,22 @@ Follow the prompts and answer the y/n questions about what packages should be re
 By default, the script will leave a new .pkg installer, in this example named Pro_Tools_Install_26.4.1_Clean.pkg. 
 
 For more usage information and command line options use `repackage_pro_tools.sh -h`
+
+## Unsigned Package
+
+`repackage_pro_tools.sh` is intended for personal use and internal sharing within a user's organization, not public redistribution.
+
+This tool produces an unsigned .pkg by expanding the package content, deleting components and re-flattening the package, this discards the cryptographic .pkg signing. The new .pkg will no longer be signed by Avid, however a user can still run that unsigned package.  Mac OS requires admin credentials to install any .pkg regardless of signing, that remains unchanged. 
+
+The repackaged .pkg on the machine it was created on does not have any quarantine restrictions applied like it would be if that same unsigned packaged had been downloaded say with a Web browser. That download would normally apply a quarantine to the file and when the unsigned .pkg is run Gatekeeper would issue a warning that Apple cannot check for malicious software (because it's not signed).
+
+If a repackaged .pkg is moved to a different computer within an organization via Web browser downloads, email attachments, or AirDrop macOS the file will be quarantined and Gatekeeper invoked when it's run so the user will see an "Apple cannot check for malicious content" warning. If you see that you can still run the .pkg from the command line in Terminal.app using the macOS installer command.
+e.g. 
+```
+sudo installer -pkg Pro_Tools_Install_26.4.1_Clean.pkg -target /
+```
+When copying modified .pkg files within your organization you can avoid the gatekeeper warning by moving files on removable media like a USB thumb drive, copying files off a file server, or using the wget command line utility to download from a intranet web server. 
+
 
 ## Issues
 
