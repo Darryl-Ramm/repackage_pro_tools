@@ -17,10 +17,10 @@ Je fais peut-être ça juste pour souligner l'absurdité de la situation.
 * Avid Video Engine [~2.8GB]
 * Pro Tools Demo Sessions [~455MB]
 * PACE/iLok License Manager [~115MB]
-* Video Test Patterns? [~95MB]
-* Tutorial Sessions? [~75MB]
-* HTML Help? [~267MB]
-* PDF Manuals? [~165MB]
+* Video Test Patterns [~95MB]
+* Tutorial Sessions [~75MB]
+* HTML Help [~267MB]
+* PDF Manuals [~165MB]
 
 The sizes here are the size of the items removed from the installer .pkg in Pro Tools 2026.4.1, these components may consume more space when actually installed. Some of these items are copied out of the Pro Tools.app bundle into each Pro Tools user's ~/Documents/Pro Tools directory, that includes Documentation, Demo Sessions, Sketch Demo sessions etc. It can be unnecessary overhead adding to the Pro Tools startup time but also adds more storage need for each user, often for content that users don't even understand is there. Here if a user selects to we just remove those items from within the Pro Tools.app bundle within the installer .pkg so the files just don't exist in the copy of Pro Tools.app that actually ends up installed, and are then not copied to users' Documents/Pro Tools (but copies might be there from past Pro Tools installs). 
 
