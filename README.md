@@ -5,6 +5,8 @@ A shell script that repackages a stripped down Avid Pro Tools .pkg installer. Th
 
 This was developed and primarily tested against the Pro_Tools_2026.4.1_Mac.dmg. It has not been widely tested with other .dmg images, the goal is to more show what is possible not to support this as a "product". 
 
+Je fais peut-être ça juste pour souligner l'absurdité de la situation.
+
 `repackage_pro_tools.sh` currently allows the user to choose to remove any of the following items
 
 * Avid Link [~129MB]
