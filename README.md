@@ -91,7 +91,7 @@ When copying modified .pkg files within your organization you can avoid Gatekeep
 
 ## Acknowledgments
 
-Developed with substantial assistance from Anthropic Claude — debugging installer/XML issues, working through several problems, and revising this documentation.
+Developed with substantial assistance from Anthropic Claude—debugging installer/XML issues, working through several problems,  revising this documentation, and yes adding em-dashes.
 
 ----
 
